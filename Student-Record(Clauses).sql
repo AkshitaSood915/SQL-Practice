@@ -1,7 +1,5 @@
--- Create a database for this practice
+-- Create and select the database
 CREATE DATABASE IF NOT EXISTS student_practice;
-
--- Select the database
 USE student_practice;
 
 -- Create the student table
@@ -26,7 +24,8 @@ VALUES
 (106, 'farah', 82, 'B', 'Delhi');
 
 -- Display all columns and rows
-SELECT * FROM student;
+SELECT *
+FROM student;
 
 -- DISTINCT: display each city only once
 SELECT DISTINCT city
@@ -38,7 +37,6 @@ SELECT *
 FROM student
 WHERE marks > 80 AND city = 'Mumbai';
 
--- Arithmetic expression in WHERE
 -- Find students whose marks plus 10 are greater than 100
 -- This calculation does not change the stored marks
 SELECT *
@@ -50,8 +48,7 @@ SELECT *
 FROM student
 WHERE marks BETWEEN 80 AND 90;
 
--- IN: match any city in the list
--- Find students living in Delhi or Mumbai
+-- IN: find students living in Delhi or Mumbai
 SELECT *
 FROM student
 WHERE city IN ('Delhi', 'Mumbai');
@@ -61,8 +58,26 @@ SELECT *
 FROM student
 WHERE city IN ('Delhi', 'Mumbai', 'Gurgaon');
 
--- NOT IN: exclude the cities in the list
--- Find students who live in neither Delhi nor Mumbai
+-- NOT IN: exclude students living in Delhi or Mumbai
 SELECT *
 FROM student
 WHERE city NOT IN ('Delhi', 'Mumbai');
+
+-- LIMIT: return at most 3 students with marks above 75
+-- Without ORDER BY, which 3 matching rows are returned is not guaranteed
+SELECT *
+FROM student
+WHERE marks > 75
+LIMIT 3;
+
+-- ORDER BY with ASC: sort cities alphabetically (A to Z)
+SELECT *
+FROM student
+ORDER BY city ASC;
+
+-- ORDER BY with DESC: sort marks from highest to lowest
+-- LIMIT 3: display the top 3 students by marks
+SELECT *
+FROM student
+ORDER BY marks DESC
+LIMIT 3;
